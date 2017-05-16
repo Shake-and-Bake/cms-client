@@ -1,25 +1,201 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags unless you know what you are doing -->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>BlogWorld!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags unless you know what you are doing -->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body class="container-fluid">
-      <h1>Example</h1>
+  <!-- Do not add `link` tags unless you know what you are doing -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
-    </body>
+  <!-- Do not add `script` tags unless you know what you are doing -->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body class="container-fluid">
+  <br>
+  <br>
+  <br>
+  <!-- BEGIN NAV BAR -->
+  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand brand-title" href="#">BlogWorld!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href=# id="change-password-modal-link" data-toggle="modal" data-target="#change-password-modal">Change Password</a></li>
+            <li id="sign-out" class="in-session-auth authentication"><a href="#">Sign Out</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <!-- END NAV BAR -->
+<!-- Visitor Div -->
+  <div class="container">
+  <!-- BEGIN JUMBOTRON -->
+  <div class="jumbotron splash-jumbo">
+    <h1 class="display-3 expecto-jumbo-text">Bob Loblaw's Law Blog</h1>
+    <p class="lead"></p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg sign-in-modal-btn" id="sign-in-modal-btn" data-toggle="modal" data-target="#sign-in-modal" href="#" role="button">Get Started</a>
+    </p>
+  </div>
+  <!-- END JUMBOTRON -->
+  <button id="showBlogButton" class="btn btn-default showBlogButton" data-toggle="tooltip" title="Click here to see some recent blogs!">Recent Blogs!</button>
+  <!-- END Visitor Div -->
+</div>
+<!-- User Div -->
+  <div class="container">
+    <p> Welcome Back </p>
+    <div class="container well col-md-6">Blog Posts</div>
+    <div class="container well col-md-6">Pages</div>
+
+  </div>
+  <!-- Sign-in Modal -->
+  <div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="sign-in-modal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- Sign-in Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+          <h4 class="modal-title" id="sign-in-modal-label">
+                    Sign-in to blog!
+                </h4>
+        </div>
+
+        <!-- Sign-in Modal Body -->
+        <div class="modal-body">
+
+          <form id="sign-in" role="form">
+            <div class="form-group">
+              <label for="sign-in-email">Email address</label>
+              <input type="email" class="form-control" name="credentials[email]" id="sign-in-email" placeholder="Enter email" />
+            </div>
+            <div class="form-group">
+              <label for="sign-in-password">Password</label>
+              <input type="password" class="form-control" name="credentials[password]" id="sign-in-password" placeholder="Password" />
+            </div>
+            <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+            <input type="submit" class="btn btn-default" value="Sign-in" name="submit">
+            <div id="sign-in-status" class="auth-status">
+              <span><p>Sign-in error, try again!</p></span>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sign-in Modal Footer -->
+        <div class="modal-footer">
+          <label><a href=# data-toggle="modal" data-target="#sign-up-modal" id="sign-up-modal-trigger-link">Create a new account</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END SIGN IN MODAL -->
+
+<!-- BEGIN SIGN UP MODAL -->
+<!-- sign-up modal -->
+<div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog"
+     aria-labelledby="sign-up-modal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close"
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="sign-up-modal-label">
+                    Create an Account
+                </h4>
+            </div>
+
+            <!-- sign-up Modal Body -->
+            <div class="modal-body">
+
+                <form id="sign-up" role="form">
+                  <div class="form-group">
+                    <label for="sign-up-email">Email address</label>
+          <input type="email" class="form-control" name="credentials[email]" id="sign-up-email" placeholder="Enter email" />
+        </div>
+        <div class="form-group">
+          <label for="sign-up-password">Password</label>
+          <input type="password" class="form-control" name="credentials[password]" id="sign-up-password" placeholder="Password" />
+        </div>
+        <div class="form-group">
+          <label for="sign-up-password-confirmation">Password</label>
+          <input type="password" class="form-control" name="credentials[password_confirmation]" id="sign-up-password-confirmation" placeholder="Confirm Password" />
+        </div>
+        <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+        <input type="submit" class="btn btn-default" name="submit" value="Create Account">
+        <div id="sign-up-status" class="auth-status">
+          <span><p>Sign-up error, try again!</p></span>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- END SIGN UP MODAL -->
+  <!-- BEGIN CHANGE PASSWORD MODAL -->
+  <!-- change-password modal -->
+  <div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="change-password-modal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+          <h4 class="modal-title" id="change-password-modal-label">
+                    Change Password
+                </h4>
+        </div>
+
+        <!-- change-password Modal Body -->
+        <div class="modal-body">
+
+          <form id="change-password-modal" role="form">
+            <div class="form-group">
+            </div>
+            <div class="form-group">
+              <label for="change-password-password">Password</label>
+              <input type="password" class="form-control" name="passwords[old]" id="old-password" placeholder="Old Password" />
+            </div>
+            <div class="form-group">
+              <label for="change-password-password-confirmation">Password</label>
+              <input type="password" class="form-control" name="passwords[new]" id="new-password" placeholder="New Password" />
+            </div>
+            <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+            <input type="submit" class="btn btn-default" name="submit" value="Change Password">
+            <div id="change-password-status" class="auth-status">
+              <span><p>Change password error, try again!</p></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END CHANGE PASSWORD MODAL -->
+  <!-- END USER AUTH MODAL -->
+
 </html>
