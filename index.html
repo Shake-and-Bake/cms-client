@@ -19,56 +19,67 @@
   <br>
   <!-- BEGIN NAV BAR -->
   <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand brand-title" href="#">BlogWorld!</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href=# id="change-password-modal-link" data-toggle="modal" data-target="#change-password-modal">Change Password</a></li>
-            <li id="sign-out" class="in-session-auth authentication"><a href="#">Sign Out</a></li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+        <a class="navbar-brand brand-title" href="#">BlogWorld!</a>
       </div>
-      <!-- /.container-fluid -->
-    </nav>
-    <!-- END NAV BAR -->
-<!-- Visitor Div -->
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href=# id="change-password-modal-link" data-toggle="modal" data-target="#change-password-modal">Change Password</a></li>
+          <li id="sign-out" class="in-session-auth authentication"><a href="#">Sign Out</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+  <!-- END NAV BAR -->
+  <!-- Visitor Div -->
   <div class="container">
-  <!-- BEGIN JUMBOTRON -->
-  <div class="jumbotron splash-jumbo">
-    <h1 class="display-3 expecto-jumbo-text">Bob Loblaw's Law Blog</h1>
-    <p class="lead"></p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg sign-in-modal-btn" id="sign-in-modal-btn" data-toggle="modal" data-target="#sign-in-modal" href="#" role="button">Get Started</a>
-    </p>
+    <!-- BEGIN JUMBOTRON -->
+    <div class="jumbotron splash-jumbo">
+      <h1 class="display-3 expecto-jumbo-text">Bob Loblaw's Law Blog</h1>
+      <p class="lead"></p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg sign-in-modal-btn" id="sign-in-modal-btn" data-toggle="modal" data-target="#sign-in-modal" href="#" role="button">Get Started</a>
+      </p>
+    </div>
+    <!-- END JUMBOTRON -->
+    <button id="showBlogButton" class="btn btn-default showBlogButton" data-toggle="tooltip" title="Click here to see some recent blogs!">Recent Blogs!</button>
+    <div class="container well visitorDiv col-md-12">
+    </div>
+    <!-- END Visitor Div -->
   </div>
-  <!-- END JUMBOTRON -->
-  <button id="showBlogButton" class="btn btn-default showBlogButton" data-toggle="tooltip" title="Click here to see some recent blogs!">Recent Blogs!</button>
-  <!-- END Visitor Div -->
-</div>
-<!-- User Div -->
- <div class="container userDiv">
-   <p> Welcome Back </p>
-   <div class="container well col-md-6">Blog Posts
-     <button id="createBlogButton" role="button" class="btn btn-default createBlogButton" data-toggle="modal" data-target="#createBlogModal" >Create new Blog!</button>
-   </div>
-   <div class="container well col-md-6">Pages
-     <button id="createPageButton" role="button" class="btn btn-default createPageButton" data-toggle="modal" data-target="#createPageModal">Create new Page!</button>
-   </div>
- </div>
+  <!-- User Div -->
+  <div class="container userDiv">
+    <p id="welcomeEmail"></p>
+    <div class="container well col-md-3">Pages
+      <button id="createPageButton" role="button" class="btn btn-default createPageButton" data-toggle="modal" data-target="#createPageModal">Create new Page!</button>
+    </div>
+    <div id="blogBody" class="container well col-md-12 blog">
+      <!-- Blog Text Area -->
+      <div id='blogTextArea' class="container well col-md-9 blog">
+        <form id="blogCreateForm">
+          <textarea id="blogTitleBox" rows="2" cols="75" name="post[title]" placeholder="Enter blog title!"></textarea>
+          <textarea id="blogBodyBox" rows="15" cols="75" name="post[body]" placeholder="Enter blog Body!"></textarea>
+
+          <button id="createBlogButton" type="submit" role="button" class="btn btn-default createBlogButton">Submit your Blog!</button>
+        </form>
+      </div>
+    </div>
+    <a class="btn btn-primary" id="cur-user-blogs" role="button">Current User Blogs</a>
+  </div>
   <!-- Sign-in Modal -->
   <div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="sign-in-modal" aria-hidden="true">
     <div class="modal-dialog modal-sm">
@@ -176,7 +187,7 @@
         <!-- change-password Modal Body -->
         <div class="modal-body">
 
-          <form id="change-password-modal" role="form">
+          <form id="change-password" role="form">
             <div class="form-group">
             </div>
             <div class="form-group">
@@ -201,47 +212,6 @@
   <!-- END USER AUTH MODAL -->
 
   <!-- BEGIN CREATE MODALS -->
-  <!-- BEGIN CREATE BLOG MODAL -->
-  <!-- create-blog modal -->
-  <div class="modal fade" id="createBlogModal" tabindex="-1" role="dialog" aria-labelledby="create-blog-modal" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-                       <span aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
-                </button>
-          <h4 class="modal-title" id="change-password-modal-label">
-                    Create Blog Post
-                </h4>
-        </div>
-
-        <!--create blog Modal Body -->
-        <div class="modal-body">
-
-          <form id="create-blog-form" role="form">
-            <div class="form-group">
-            </div>
-            <div class="form-group">
-              <label for="create-title-confirmation">Title</label>
-              <input type="text" class="form-control" name="post[title]" id="create-blog-title" placeholder="Title" />
-            </div>
-            <div class="form-group">
-              <label for="create-body-confirmation">Body</label>
-              <input type="text" class="form-control" name="post[body]" id="create-blog-body" placeholder="Body" />
-            </div>
-            <!-- <button type="submit" class="btn btn-default">Submit</button> -->
-            <input type="submit" class="btn btn-default" name="submit" value="Create Blog">
-            <div id="create-blog-status" class="blog-status">
-              <span><p>Create blog had an issue, try again!</p></span>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- END CREATE BLOG MODAL -->
   <!-- BEGIN CREATE PAGE MODAL -->
   <!-- create-page modal -->
   <div class="modal fade" id="createPageModal" tabindex="-1" role="dialog" aria-labelledby="create-page-modal" aria-hidden="true">

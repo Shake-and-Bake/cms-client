@@ -33,8 +33,11 @@ const signUpFailure = (error) => {
 }
 
 const signInSuccess = (data) => {
-  console.log('sign in success')
+  console.log('sign in success, data: ', data)
+  const userEmail = data.user.email
+  console.log(userEmail)
   store.user = data.user // this stores the entire user object
+  $('#welcomeEmail').html('Welcome ' + userEmail)
   $('#sign-in-email').val('')
   $('#sign-in-password').val('')
   $('#sign-in-modal').modal('toggle')
@@ -54,6 +57,7 @@ const signInFailure = (error) => {
 
 const signOutSuccess = () => {
   store.user = null
+  $('#welcomeEmail').html('')
   console.log('sign out success')
 
   // $('.splash-jumbo').show()

@@ -1,0 +1,18 @@
+<ul>
+  {{#each posts as |post|}}
+    <li data-id: "{{this.id}}" data-name="{{this.name}}" class='this{{this.id}} col-md-4 updatedWk list-unstyled text-center'>
+      <h1>  <small>{{post.title}}</small></h1>
+      <div>
+        <ul data-id="{{post.id}}" class="post postStats list-unstyled">
+          <!-- Blog Info -->
+          <div>
+            <!-- <p>Title: {{post.title}}</p> -->
+            <p>Body: {{post.body}}</p>
+          </div>
+        </ul>
+      </div>
+      <hr>
+    </li>
+  {{/each}}
+
+</ul>

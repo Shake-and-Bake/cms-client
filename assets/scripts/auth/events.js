@@ -41,7 +41,7 @@ const addAuthHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#sign-out').on('click', onSignOut)
-  $('#change-password-modal').on('submit', onChangePassword)
+  $('#change-password').on('submit', onChangePassword)
   // $('#sign-in-modal-btn').on('click', function () {
   //   $('.auth-status').hide()
   // })
