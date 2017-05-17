@@ -5,7 +5,7 @@
   <h1 class ="text-center" data-id="{{post.id}}"> <small>{{post.title}}</small></h1>
   <div class="text-center">
     {{#if post.title}}
-      <ul class="list-unstyled"><li data-id="{{post.id}}">Title: {{post.category}}</li>
+      <ul class="list-unstyled">
         <li data-id="{{post.id}}">Body: {{post.body}}</li>
         <li>
           <button type="button" class="update btn btn-primary handle" data-toggle="modal" data-target="#updatepostmodal{{post.id}}">Update Blog</button>
@@ -21,9 +21,9 @@
             <div class="modal-body">
             <form class="update-post" data-id="{{post.id}}">
               <fieldset>
-                <input type='text' name='post[title]' id ='updateTitle' placeholder="Updated Description">
-                <input type='text' name='post[body]' id ='updateBody' placeholder="Updated Category">
-                <input data-id="{{post.id}}" type="submit" name="submit" value="Update  Blog">
+                <input type='text' name='post[title]' id ='updateTitle' placeholder="Updated Title" required>
+                <input type='text' name='post[body]' id ='updateBody' placeholder="Updated Body" required>
+                <input data-id="{{post.id}}" type="submit" name="submit" value="Update Blog">
             </fieldset>
             </form>
             </div>
@@ -57,8 +57,6 @@
         </div>
       </div>
 
-    {{else}}
-      No blogs.
     {{/if}}
   </div>
 {{/each}}

@@ -5,14 +5,31 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
 
+const checkForBlanks = function (data) {
+  // check to see if user entered valid values in form fields
+  if ((data.post.title === '') || (data.post.body === '')) {
+    // if not valid - return true
+    return true
+  } else {
+    // if valid - return false
+    return false
+  }
+}
+
 const onCreateBlog = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target) // same as this
-  api.createBlog(data)
-    .then(ui.createBlogSuccess)
-    .catch(ui.createBlogFailure)
+  if (checkForBlanks(data)) {
+    // if invalid - notify user and do not send to API
+    $('.updateerror').text('An error occurred. You must fill in all fields in order to create an item.')
+  } else {
+    api.createBlog(data)
+      .then(ui.createBlogSuccess)
+      .catch(ui.createBlogFailure)
     // .done(onGetPosts)
+  }
 }
+
 const onGetBlogs = (event) => {
   // event.preventDefault()
   api.getBlogs()
@@ -31,11 +48,16 @@ const onUpdateCurrentUserBlogs = function (event) {
   event.preventDefault()
   console.log(' update user blogs click is heard')
   const data = getFormFields(event.target)
-  const postId = $(this).attr('data-id')
-  api.updateCurrentUserBlogs(postId, data)
-    .then(ui.updateCurrentUserBlogsSuccess)
-    .catch(ui.updateCurrentUserBlogsFail)
-    .done(onGetCurrentUserBlogs)
+  if (checkForBlanks(data)) {
+    // if invalid - notify user and do not send to API
+    $('.updateerror').text('An error occurred. You must fill in all fields in order to update an item.')
+  } else {
+    const postId = $(this).attr('data-id')
+    api.updateCurrentUserBlogs(postId, data)
+      .then(ui.updateCurrentUserBlogsSuccess)
+      .catch(ui.updateCurrentUserBlogsFail)
+      .done(onGetCurrentUserBlogs)
+  }
 }
 
 const onDeleteCurrentUserBlogs = function () {
