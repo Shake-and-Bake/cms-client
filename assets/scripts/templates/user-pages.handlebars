@@ -5,7 +5,7 @@
   <h1 class ="text-center" data-id="{{page.id}}"> <small>{{page.title}}</small></h1>
   <div class="text-center">
     {{#if page.title}}
-      <ul class="list-unstyled"><li data-id="{{page.id}}">Title: {{page.title}}</li>
+      <ul class="list-unstyled">
         <li data-id="{{page.id}}">Body: {{page.body}}</li>
         <li data-id="{{page.id}}">Footer: {{page.footer}}</li>
         <li>
@@ -22,9 +22,9 @@
             <div class="modal-body">
             <form class="update-page" data-id="{{page.id}}">
               <fieldset>
-                <input type='text' name='page[title]' id ='updateTitle' placeholder="Updated Description">
-                <input type='text' name='page[body]' id ='updateBody' placeholder="Updated Category">
-                <input type='text' name='page[footer]' id ='updateFooter' placeholder="Updated Footer">
+                <input type='text' name='page[title]' id ='updateTitle' placeholder="Updated Description" required>
+                <input type='text' name='page[body]' id ='updateBody' placeholder="Updated Body" required>
+                <input type='text' name='page[footer]' id ='updateFooter' placeholder="Updated Footer" required>
                 <input data-id="{{page.id}}" type="submit" name="submit" value="Update Page">
             </fieldset>
             </form>
@@ -58,9 +58,6 @@
           </div>
         </div>
       </div>
-
-    {{else}}
-      No blogs.
     {{/if}}
   </div>
 {{/each}}
