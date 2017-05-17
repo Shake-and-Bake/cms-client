@@ -36,21 +36,21 @@
         <ul class="nav navbar-nav">
         </ul>
         <!-- <ul class="nav navbar-nav navbar-right"> -->
-          <!-- <li><a href=# id="change-password-modal-link" data-toggle="modal" data-target="#change-password-modal">Change Password</a></li> -->
-          <!-- <li id="sign-out" class="in-session-auth authentication"><a href="#">Sign Out</a></li> -->
+        <!-- <li><a href=# id="change-password-modal-link" data-toggle="modal" data-target="#change-password-modal">Change Password</a></li> -->
+        <!-- <li id="sign-out" class="in-session-auth authentication"><a href="#">Sign Out</a></li> -->
         <!-- </ul> -->
-      <ul class="blogActions nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Your Blog Stuff <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#" id='#' data-toggle="modal" data-target="#">See all blogs</a></li>
-            <li role="separator" class="divider"></li>
-            <li id="sign-out" class="in-session-auth authentication"><a href="#">Sign Out</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#change-password-modal">Change Password</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+        <ul class="blogActions nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Your Blog Stuff <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" id='#' data-toggle="modal" data-target="#">See all blogs</a></li>
+              <li role="separator" class="divider"></li>
+              <li id="sign-out" class="in-session-auth authentication"><a href="#">Sign Out</a></li>
+              <li><a href="#" data-toggle="modal" id="change-password-modal-link" data-target="#change-password-modal">Change Password</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
       <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
@@ -216,11 +216,11 @@
             </div>
             <div class="form-group">
               <label for="change-password-password">Old Password</label>
-              <input type="password" class="form-control" name="passwords[old]" id="old-password" placeholder="Old Password" />
+              <input type="password" class="form-control change-password-input" name="passwords[old]" id="old-password" placeholder="Old Password" />
             </div>
             <div class="form-group">
               <label for="change-password-password-confirmation">New Password</label>
-              <input type="password" class="form-control" name="passwords[new]" id="new-password" placeholder="New Password" />
+              <input type="password" class="form-control change-password-input" name="passwords[new]" id="new-password" placeholder="New Password" />
             </div>
             <!-- <button type="submit" class="btn btn-default">Submit</button> -->
             <input type="submit" class="btn btn-default" name="submit" value="Change Password">
