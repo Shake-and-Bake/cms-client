@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Featherpen!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags unless you know what you are doing -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags unless you know what you are doing -->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body class="container-fluid">
+  <br>
+  <br>
+  <br>
+  <!-- BEGIN NAV BAR -->
+  <nav class="navbar navbar-default navbar-fixed-top navbar-inverse hidden user-view">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <div class="navbar-brand brand-title">Featherpen!</div>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="blogActions nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Your Blog Stuff <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li id="sign-out" class="in-session-auth authentication"><a href="#">Sign Out</a></li>
+              <li><a href="#" data-toggle="modal" id="change-password-modal-link" data-target="#change-password-modal">Change Password</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+  <!-- END NAV BAR -->
+  <!-- Visitor Div -->
+  <div class="container">
+    <!-- BEGIN JUMBOTRON -->
+    <div class="jumbotron splash-jumbo visitor-view">
+      <h1 class="display-3 expecto-jumbo-text">FEATHERPEN!</h1>
+      <p class="lead"></p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg sign-in-modal-btn" id="sign-in-modal-btn" data-toggle="modal" data-target="#sign-in-modal" href="#" role="button">Get Started</a>
+      </p>
+    </div>
+    <!-- END JUMBOTRON -->
+    <!-- TAB FOR VISITOR BLOGS/PAGES -->
+    <div class="visitor-view">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" id="tabs" class="active"><a id="showBlogButton" href="#recent-blogs" aria-controls="recent-blogs" role="tab" data-toggle="tab">All Blogs</a></li>
+        <li role="presentation"><a id="showPageButton" href="#recent-pages" aria-controls="recent-pages" role="tab" data-toggle="tab">All Pages</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane container well visitorDiv visitorBlogDiv col-md-12 active visitor-view" id="recent-blogs">Click the tab to view all content</div>
+        <div role="tabpanel" class="tab-pane container well visitorDiv visitorPageDiv col-md-12 visitor-view" id="recent-pages"></div>
+      </div>
+
+    </div>
+    <!-- END TAB FOR VISITOR BLOGS/PAGES -->
+    <!-- END Visitor Div -->
+  </div>
+  <!-- User Div -->
+  <div class="container userDiv">
+    <!-- <p id="welcomeEmail" class="hidden col-md-3 well user-view welcomeUser"></p> -->
+    <br>
+    <!-- BEGIN USER FEEDBACK ALERTS -->
+    <div class='userFeedback col-md-12 hidden user-view alerts-container'>
+
+      <!-- BLOG CREATE SUCCESS -->
+      <div class="alert alert-success alert-fixed-top create-success" id="success-blog-create-alert" role="alert">
+        <strong>Success!</strong> Blog Created.
+      </div>
+
+      <!-- PAGE CREATE SUCCESS -->
+      <div class="alert alert-success alert-fixed-top create-success" id="success-page-create-alert" role="alert">
+        <strong>Success!</strong> Page Created.
+      </div>
+
+      <!-- BLOG UPDATE SUCCESS -->
+      <div class="alert alert-success alert-fixed-top update-success" id="success-blog-update-alert" role="alert">
+            <strong>Success!</strong> Blog Updated.
+      </div>
+
+      <!-- PAGE UPDATE SUCCESS -->
+      <div class="alert alert-success alert-fixed-top update-success" id="success-page-update-alert" role="alert">
+            <strong>Success!</strong> Page Updated.
+      </div>
+
+      <!-- BLOG CREATE FAIL -->
+      <div class="alert alert-danger alert-fixed-top create-fail" id="fail-blog-create-alert" role="alert">
+          <strong>Create Blog Failed!</strong> No fields can be blank.
+      </div>
+
+      <!-- PAGE CREATE FAIL -->
+      <div class="alert alert-danger alert-fixed-top create-fail" id="fail-page-create-alert" role="alert">
+          <strong>Create Page Failed!</strong> No fields can be blank.
+      </div>
+
+      <!-- BLOG UPDATE FAIL -->
+      <div class="alert alert-danger alert-fixed-top update-fail" id="fail-blog-update-alert" role="alert">
+          <strong>Update Blog Failed!</strong> No fields can be blank.
+      </div>
+
+      <!-- PAGE UPDATE FAIL -->
+      <div class="alert alert-danger alert-fixed-top update-fail" id="fail-page-update-alert" role="alert">
+          <strong>Update Page Failed!</strong> No fields can be blank.
+      </div>
+
+      <!-- BLOG DELETE HAPPENED -->
+      <div class="alert alert-info alert-fixed-top blog-delete-alert-success" role="alert">
+          Blog Was Deleted Successfully.
+      </div>
+
+      <!-- PAGE DELETE HAPPENED -->
+      <div class="alert alert-info alert-fixed-top page-delete-alert-success" role="alert">
+          Page Was Deleted Successfully.
+      </div>
+
+    </div>
+    <!-- END USER FEEDBACK ALERTS -->
+    <!-- BEGIN USER TABS -->
+    <div class='userTabs mediaQuery'>
+      <!-- Nav tabs -->
+      <div id="welcomeEmail" class="navbar-brand hidden user-view welcomeUser"></div>
+      <ul class="nav nav-tabs navbar-right" role="tablist">
+        <li role="presentation" id="tabs" class="active"><a href="#create-blog" aria-controls="create-blog" role="tab" data-toggle="tab" class="hidden user-view">Create Blog</a></li>
+        <li role="presentation"><a href="#create-page" aria-controls="create-page" role="tab" data-toggle="tab" class="hidden user-view">Create Page</a></li>
+        <li role="presentation"><a href="#user-blogs" aria-controls="user-blogs" role="tab" data-toggle="tab" class="hidden user-view" id="cur-user-blogs">View/Edit Your Blogs</a></li>
+        <li role="presentation"><a href="#user-pages" aria-controls="user-pages" role="tab" data-toggle="tab" class="hidden user-view" id="cur-user-pages">View/Edit Your Pages</a></li>
+        <li role="presentation"><a href="#all-blogs" aria-controls="all-blogs" role="tab" data-toggle="tab" class="hidden user-view" id="all-blogs-tab">See All Blogs</a></li>
+        <li role="presentation"><a href="#all-pages" aria-controls="all-pages" role="tab" data-toggle="tab" class="hidden user-view" id="all-pages-tab">See All Pages</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content userTabFunction col-md-12">
+        <!-- Create user blog tab panel-->
+        <div role="tabpanel" class="tab-pane active" id="create-blog">
+          <div id="blogBody" class="well col-md-12 blogClass hidden user-view">
+            <!-- Blog Text Area -->
+            <div id='blogTextArea' class="well col-md-9 blog">
+              <form id="blogCreateForm">
+                <textarea id="blogTitleBox" class="blogfield"rows="2" cols="75" name="post[title]" placeholder="Enter blog title!" required></textarea>
+                <textarea id="blogBodyBox" class="blogfield" rows="15" cols="75" name="post[body]" placeholder="Enter blog Body!" required></textarea>
+                <br>
+                <p class="textarea-notes">*NOTE: Return key is disabled in text areas.</p>
+                <p class="textarea-notes">Max Character Lengths: Title (100), Body (500).</p>
+                <p class="textarea-notes">All fields are required.</p>
+                <button id="createBlogButton" type="submit" role="button" class="btn btn-default createBlogButton">Submit your Blog!</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Create user page tab panel -->
+        <div role="tabpanel" class="tab-pane userTabFunction" id="create-page">
+          <div id="pageBody" class="container well col-md-12 page hidden user-view">
+            <!-- Page Text Area -->
+            <div id='pageTextArea' class="container well col-md-9 page">
+              <form id="create-page-form" role="form">
+                <textarea id="create-page-title" class="pagefield" maxlength="100" rows="2" cols="75" name="page[title]" placeholder="Enter page title!" required></textarea>
+                <textarea id="create-page-body" class="pagefield" maxlength="500" rows="15" cols="75" name="page[body]" placeholder="Enter page body!" required></textarea>
+                <textarea id="create-page-footer" class="pagefield" maxlength="100" rows="2" cols="75" name="page[footer]" placeholder="Enter page footer!" required></textarea>
+                <br>
+                <p class="textarea-notes">*NOTE: Return key is disabled in text areas.</p>
+                <p class="textarea-notes">Max Character Lengths: Title (100), Body (500), Footer (100).</p>
+                <p class="textarea-notes">All fields are required.</p>
+                <label for="create-body-confirmation">Choose Template</label>
+                <select name="page[template]" id="create-page-template">
+                <option value="defaultTemplate">Default</option>
+                <option value="coolTemplate">Cool</option>
+                <option value="fancyTemplate">Fancy</option>
+              </select>
+                <button id="createPageButton" type="submit" role="button" class="btn btn-default createPageButton">Submit your Page!</button>
+              </form>
+              <!-- Example Template forms with styling -->
+              <h2>Example Templates</h2>
+                <div class='defaultTemplate col-md-4'>Default Template
+                  <br><br>
+                  <p>This is what your body what look like using the default template. </p>
+                  <p>Footer</p>
+                </div>
+                <div class='coolTemplate col-md-4'>Cool Template
+                  <br><br>
+                  <p>This is what your body what look like using the cool template. </p>
+                  <p>Footer</p>
+                </div>
+                <div class='fancyTemplate col-md-4'>Fancy Template
+                  <br><br>
+                  <p>This is what your body what look like using the fancy template. </p>
+                  <p>Footer</p>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- View/Edit user blog tab panel -->
+        <div role="tabpanel" class="tab-pane container well col-md-12 page" id="user-blogs">
+          <div id="userHandlebarBody-blog" class="well contextBody hidden user-view">
+          </div>
+        </div>
+        <!-- View/Edit user page tab panel -->
+        <div role="tabpanel" class="tab-pane container well col-md-12 page" id="user-pages">
+          <div id="userHandlebarBody-page" class="well contextBody hidden user-view">
+          </div>
+        </div>
+        <!-- View all blogs tab panel -->
+        <div role="tabpanel" class="tab-pane container well visitorBlogDiv user-view col-md-12" id="all-blogs"></div>
+        <!-- View all pages tab panel -->
+          <div role="tabpanel" class="tab-pane container well visitorPageDiv user-view col-md-12" id="all-pages"></div>
+      </div>
+    </div>
+  </div>
+  <!-- END USER TABS -->
+  <!-- Sign-in Modal -->
+  <div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="sign-in-modal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- Sign-in Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+          <h4 class="modal-title" id="sign-in-modal-label">
+                    Sign-in to blog!
+                </h4>
+        </div>
+        <!-- Sign-in Modal Body -->
+        <div class="modal-body">
+          <form id="sign-in" role="form">
+            <div class="form-group">
+              <label for="sign-in-email">Email address</label>
+              <input type="email" class="form-control" name="credentials[email]" id="sign-in-email" placeholder="Enter email" />
+            </div>
+            <div class="form-group">
+              <label for="sign-in-password">Password</label>
+              <input type="password" class="form-control" name="credentials[password]" id="sign-in-password" placeholder="Password" />
+            </div>
+            <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+            <input type="submit" class="btn btn-default" value="Sign-in" name="submit">
+            <div id="sign-in-status" class="auth-status">
+              <p id="sign-in-error"></p>
+            </div>
+          </form>
+        </div>
+        <!-- Sign-in Modal Footer -->
+        <div class="modal-footer">
+          <label><a href=# data-toggle="modal" data-target="#sign-up-modal" id="sign-up-modal-trigger-link">Create a new account</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END SIGN IN MODAL -->
+<!-- BEGIN SIGN UP MODAL -->
+<!-- sign-up modal -->
+<div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog"
+     aria-labelledby="sign-up-modal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close"
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="sign-up-modal-label">
+                    Create an Account
+                </h4>
+            </div>
+            <!-- sign-up Modal Body -->
+            <div class="modal-body">
+                <form id="sign-up" role="form">
+                  <div class="form-group">
+                    <label for="sign-up-email">Email address</label>
+          <input type="email" class="form-control" name="credentials[email]" id="sign-up-email" placeholder="Enter email" />
+        </div>
+        <div class="form-group">
+          <label for="sign-up-password">Password</label>
+          <input type="password" class="form-control" name="credentials[password]" id="sign-up-password" placeholder="Password" />
+        </div>
+        <div class="form-group">
+          <label for="sign-up-password-confirmation">Password</label>
+          <input type="password" class="form-control" name="credentials[password_confirmation]" id="sign-up-password-confirmation" placeholder="Confirm Password" />
+        </div>
+        <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+        <input type="submit" class="btn btn-default" name="submit" value="Create Account">
+        <div id="sign-up-status" class="auth-status">
+          <p id="sign-up-error"></p>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- END SIGN UP MODAL -->
+  <!-- BEGIN CHANGE PASSWORD MODAL -->
+  <!-- change-password modal -->
+  <div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="change-password-modal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+          <h4 class="modal-title" id="change-password-modal-label">
+                    Change Password
+                </h4>
+        </div>
+        <!-- change-password Modal Body -->
+        <div class="modal-body">
+          <form id="change-password" role="form">
+            <div class="form-group">
+            </div>
+            <div class="form-group">
+              <label for="change-password-password">Old Password</label>
+              <input type="password" class="form-control change-password-input" name="passwords[old]" id="old-password" placeholder="Old Password" />
+            </div>
+            <div class="form-group">
+              <label for="change-password-password-confirmation">New Password</label>
+              <input type="password" class="form-control change-password-input" name="passwords[new]" id="new-password" placeholder="New Password" />
+            </div>
+            <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+            <input type="submit" class="btn btn-default" name="submit" value="Change Password">
+            <div id="change-password-status" class="auth-status">
+              <p id="change-password-failure"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END CHANGE PASSWORD MODAL -->
+  <!-- END USER AUTH MODAL -->
+  </div>
+  </div>
+  </div>
+  <!-- END CREATE PAGE MODAL -->
+</html>
