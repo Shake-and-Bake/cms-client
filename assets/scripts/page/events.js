@@ -5,9 +5,14 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
 
-const checkForBlanks = function (data) {
+const checkForBlanks = function(data) {
   // check to see if user entered valid values in form fields
-  if ((data.page.title === '') || (data.page.body === '')) {
+  const userTitle = (data.page.title).replace(/ +?/g, '')
+  const userBody = (data.page.body).replace(/ +?/g, '')
+  const userFooter = (data.page.footer).replace(/ +?/g, '')
+  if ((userTitle.length === 0) ||
+    (userBody.length === 0) ||
+    (userFooter.length === 0)) {
     // if not valid - return true
     return true
   } else {
@@ -16,13 +21,20 @@ const checkForBlanks = function (data) {
   }
 }
 
-const onCreatePage = function (event) {
+const onCreatePage = function(event) {
   event.preventDefault()
   // assign form fields inputs to data
   const data = getFormFields(event.target) // same as this
   if (checkForBlanks(data)) {
     // if invalid - notify user and do not send to API
     $('.updateerror').text('An error occurred. You must fill in all fields in order to create an item.')
+    $('#fail-page-create-alert').alert()
+    $('#fail-page-create-alert').fadeTo(1500, 500).slideUp(500, () => {
+      $('#fail-page-create-alert').slideUp(500)
+    })
+    $('html, body').animate({
+      scrollTop: 0
+    }, 'fast')
   } else {
     // if no blanks - send ajax request
     api.createPage(data)
@@ -37,25 +49,29 @@ const onGetPages = (event) => {
     .catch(ui.getPagesfailure)
 }
 
-const onGetCurrentUserPages = function (event) {
+const onGetCurrentUserPages = function(event) {
   api.getCurrentUserPages()
     .then(ui.getCurrentUserPagesSuccess)
     .catch(ui.getCurrentUserPagesFail)
 }
 
-const onGetOthersPages = function (event) {
+const onGetOthersPages = function(event) {
   api.getPages()
     .then(ui.getOthersPagesSuccess)
     .catch(ui.getOthersPagesfailure)
 }
 
-const onUpdateCurrentUserPages = function (event) {
+const onUpdateCurrentUserPages = function(event) {
   event.preventDefault()
   // assign input form fields to data
   const data = getFormFields(event.target)
   if (checkForBlanks(data)) {
     // if invalid - notify user and do not send to API
     $('.updateerror').text('An error occurred. You must fill in all fields in order to create an item.')
+    $('#fail-page-update-alert').alert()
+    $('#fail-page-create-alert').fadeTo(1500, 500).slideUp(500, () => {
+      $('#fail-page-create-alert').slideUp(500)
+    })
   } else {
     // use id to update that page id
     const pageId = $(this).attr('data-id')
@@ -66,7 +82,7 @@ const onUpdateCurrentUserPages = function (event) {
   }
 }
 
-const onDeleteCurrentUserPages = function () {
+const onDeleteCurrentUserPages = function() {
   event.preventDefault()
   // use data-id in html to delete that page id
   const data = $(this).attr('data-id')
@@ -76,12 +92,12 @@ const onDeleteCurrentUserPages = function () {
     .done(onGetCurrentUserPages)
 }
 
-const refreshUpdatePageModal = function () {
+const refreshUpdatePageModal = function() {
   // when modal closes, run a GET request
   onGetCurrentUserPages()
 }
 
-const pageFieldListener = function (event) {
+const pageFieldListener = function(event) {
   // prevent user from using return key
   if (event.which === 13) {
     event.preventDefault()
@@ -93,7 +109,7 @@ const addPageHandlers = () => {
   $('#showPageButton').on('click', onGetPages)
   $('#cur-user-pages').on('click', onGetCurrentUserPages)
   $('.pagefield').keypress(pageFieldListener)
-  $(document).keypress('.pagefield', pageFieldListener)
+  $(document).on('keypress', '.pagefield', pageFieldListener)
   $(document).on('submit', '.update-page', onUpdateCurrentUserPages)
   $(document).on('submit', '.remove-page', onDeleteCurrentUserPages)
   $(document).on('hidden.bs.modal', '.update-page-modal', refreshUpdatePageModal)

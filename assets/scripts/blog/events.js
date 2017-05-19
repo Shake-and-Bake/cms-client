@@ -8,7 +8,9 @@ const ui = require('./ui')
 // The following functions handled the events associated with creating, deleting, updating, and reading blogs
 const checkForBlanks = function (data) {
   // check to see if user entered valid values in form fields
-  if ((data.post.title === '') || (data.post.body === '')) {
+  const userTitle = (data.post.title).replace(/ +?/g, '')
+  const userBody = (data.post.body).replace(/ +?/g, '')
+  if ((userTitle.length === 0) || (userBody.length === 0)) {
     // if not valid - return true
     return true
   } else {
@@ -53,9 +55,9 @@ const onUpdateCurrentUserBlogs = function (event) {
   if (checkForBlanks(data)) {
     // if invalid - notify user and do not send to API
     $('.updateerror').text('An error occurred. You must fill in all fields in order to create an item.')
-    $('#success-blog-update-alert').alert()
-    $('#success-blog-update-alert').fadeTo(1500, 500).slideUp(500, () => {
-      $('#success-blog-update-alert').slideUp(500)
+    $('#fail-blog-update-alert').alert()
+    $('#fail-blog-update-alert').fadeTo(1500, 500).slideUp(500, () => {
+      $('#fail-blog-update-alert').slideUp(500)
     })
     $('html, body').animate({ scrollTop: 0 }, 'fast')
   } else {
@@ -94,7 +96,7 @@ const addBlogHandlers = () => {
   $('#showBlogButton').on('click', onGetBlogs)
   $('#cur-user-blogs').on('click', onGetCurrentUserBlogs)
   $('.blogfield').keypress(blogFieldListener)
-  $(document).keypress('.blogfield', blogFieldListener)
+  $(document).on('keypress', '.blogfield', blogFieldListener)
   $(document).on('submit', '.update-post', onUpdateCurrentUserBlogs)
   $(document).on('submit', '.remove-post', onDeleteCurrentUserBlogs)
   $(document).on('hidden.bs.modal', '.update-post-modal', refreshUpdatePostModal)
